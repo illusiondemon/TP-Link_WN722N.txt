@@ -1,0 +1,34 @@
+apt update && apt upgrade
+
+apt install dkms bc
+
+reboot
+
+uname -r
+
+apt install linux-headers-$(uname -r)
+sudo -i
+
+echo "blacklist 8188eu" >> "/etc/modprobe.d/realtek.conf"
+
+echo "blacklist r8188eu" >> "/etc/modprobe.d/realtek.conf"
+
+rmmod r8188eu.ko
+
+cd Desktop
+
+git clone https://github.con/aircrack-ng/rtl8188eus.git
+
+cd rtl8188eus
+
+make
+
+make install
+
+reboot
+
+modprobe 8188eu
+
+lsusb
+
+iwconfig wlan1 mode monitor
